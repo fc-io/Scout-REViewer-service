@@ -1,0 +1,9 @@
+name: Scout-REViewer-service
+dependencies:
+- python=3.9.5
+- pip
+- pip:
+    - Flask[async]
+    - flask-expects-json
+    - aiohttp
+    - async_timeout
