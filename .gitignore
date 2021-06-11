@@ -1,5 +1,6 @@
 ## project specific
 *fasta
+tmp_data
 
 ## python
 *.py[cod]

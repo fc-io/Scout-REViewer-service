@@ -9,3 +9,4 @@ dependencies:
     - pydantic
     - aiohttp
     - async_timeout
+    - aiofiles
