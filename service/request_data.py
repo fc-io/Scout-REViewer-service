@@ -5,6 +5,7 @@ from aiohttp import ClientSession
 async def fetch_url(session, url):
     """Fetch the specified URL using the aiohttp session specified."""
     response = await session.get(url)
+    print(response)
     return {'url': response.url, 'status': response.status}
 
 async def get_all_urls(urls):

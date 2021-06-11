@@ -3,7 +3,9 @@ dependencies:
 - python=3.9.5
 - pip
 - pip:
-    - Flask[async]
-    - flask-expects-json
+    - fastapi
+    - uvicorn[standard]
+    - typing
+    - pydantic
     - aiohttp
     - async_timeout
