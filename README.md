@@ -50,12 +50,12 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 
 ## TODO
 
-DONE: get files from remote
-DONE: store files on server
-TODO: run REViewer with local file path as arguments
-TODO: send back REViewer generated SVG
-TODO: delete temp files
-TODO: think about if this is secure (enough)
-TODO: tests
-TODO: DRY up
-TODO: handle files that are to large
+- [x] get files from remote
+- [x] store files on server
+- [ ] run REViewer with local file path as arguments
+- [ ] send back REViewer generated SVG
+- [ ] delete temp files
+- [ ] think about if this is secure (enough)
+- [ ] tests
+- [ ] DRY up
+- [ ] handle files that are to large
