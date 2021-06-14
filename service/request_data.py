@@ -24,12 +24,11 @@ async def get_data(session, data, data_type, file_id, file_type):
     return file_name
 
 async def store_data(file_id, data):
-    async with ClientSession() as session:
-        tasks = []
-        tasks.append(asyncio.create_task(get_data(session, data, 'catalog', file_id, 'json')))
-        tasks.append(asyncio.create_task(get_data(session, data, 'reads', file_id, 'bam')))
-        tasks.append(asyncio.create_task(get_data(session, data, 'vcf', file_id, 'vcf')))
+    session =ClientSession()
+    results = await asyncio.gather(
+      asyncio.create_task(get_data(session, data, 'catalog', file_id, 'json')),
+      asyncio.create_task(get_data(session, data, 'reads', file_id, 'bam')),
+      asyncio.create_task(get_data(session, data, 'vcf', file_id, 'vcf'))
+    )
 
-        results = await asyncio.gather(*tasks)
-
-        return results
+    return results
