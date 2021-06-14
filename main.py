@@ -1,3 +1,5 @@
+import uuid
+
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
@@ -19,10 +21,11 @@ class Reviewer(BaseModel):
 
 @app.post('/reviewer', response_class=PlainTextResponse)
 async def reviewer(data: Reviewer):
+    file_id = str(uuid.uuid4())
     request_data = data.dict()
-    files = await store_data(request_data)
-    locus = request_data.get('locus', '')
-    print(locus, files)
+    files = await store_data(file_id, request_data)
+    print(files)
+    # svg_path = generate_svg(files)
 
     return f'''<svg
       version="1.1"

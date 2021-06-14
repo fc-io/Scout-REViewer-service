@@ -23,11 +23,11 @@ cd <project>
 conda env create
 ```
 
+### Run (development)
+
 ``` bash
 conda activate Scout-REViewer-service
 ```
-
-### Run (development)
 
 ``` bash
 uvicorn main:app --reload
@@ -35,7 +35,7 @@ uvicorn main:app --reload
 
 ### API
 
-Example requests – http://127.0.0.1:8000/reviewer
+Example requests
 
 ``` bash
 curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
