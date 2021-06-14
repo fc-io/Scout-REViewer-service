@@ -1,5 +1,6 @@
 ## project specific
 *fasta
+*fasta.fai
 tmp_data
 
 ## python

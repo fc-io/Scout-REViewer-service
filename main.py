@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 from service.request_data import store_data
+from service.generate_svg import generate_svg
 
 app = FastAPI()
 
@@ -15,6 +16,7 @@ async def root():
 
 class Reviewer(BaseModel):
     reads: str
+    index_file: str
     vcf: str
     catalog: Optional[str] = None
     locus: str
@@ -23,19 +25,8 @@ class Reviewer(BaseModel):
 async def reviewer(data: Reviewer):
     file_id = str(uuid.uuid4())
     request_data = data.dict()
-    files = await store_data(file_id, request_data)
-    print(files)
-    # svg_path = generate_svg(files)
+    results = await store_data(request_data, file_id)
+    svg_path = generate_svg(request_data, file_id, results)
 
-    return f'''<svg
-      version="1.1"
-       baseProfile="full"
-       width="800" height="100"
-       xmlns="http://www.w3.org/2000/svg">
-
-      <rect width="100%" height="100%" fill="red" />
-      <text x="20" y="50" font-size="20" fill="black">
-        1st url: {files[0]}
-      </text>
-    </svg>'''
+    return open(svg_path, "r").read()
 

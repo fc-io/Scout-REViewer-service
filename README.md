@@ -52,10 +52,12 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 
 - [x] get files from remote
 - [x] store files on server
-- [ ] run REViewer with local file path as arguments
-- [ ] send back REViewer generated SVG
+- [x] run REViewer with local file path as arguments
+- [x] send back REViewer generated SVG
+- [ ] bundle REViewer
+- [ ] Dockerize
 - [ ] delete temp files
 - [ ] think about if this is secure (enough)
 - [ ] tests
-- [ ] DRY up
+- [ ] prettify && DRY up
 - [ ] handle files that are to large
