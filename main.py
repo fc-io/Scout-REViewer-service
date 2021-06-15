@@ -29,4 +29,5 @@ async def reviewer(data: Reviewer):
     svg_path = generate_svg(request_data, file_id, results)
 
     return open(svg_path, "r").read()
+    return ''
 
