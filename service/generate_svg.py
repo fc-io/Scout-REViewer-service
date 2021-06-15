@@ -3,7 +3,6 @@ import subprocess
 import uuid
 
 from service.utils.get_root_path import get_root_path
-
 def generate_svg(data, file_id, files):
     root_path = get_root_path()
     path = f'{root_path}/tmp_data'
@@ -16,7 +15,7 @@ def generate_svg(data, file_id, files):
     locus = data.get('locus', '')
 
     cmd = [
-      '/Users/fredrik/bin/REViewer/build/install/bin/REViewer',
+      os.environ['REV_PATH'],
       '--reads', files.get('reads', ''),
       '--vcf', files.get('vcf', ''),
       '--catalog', files.get('catalog', f'{root_path}/data/catalog_test.json'),
