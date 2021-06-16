@@ -18,7 +18,7 @@ cd <project>
 #### run
 
 ``` bash
-docker build -t mybuild .
+# docker build -t mybuild .
 # docker run --rm --name mycontainer -p 5000:5000 mybuild
 docker compose up
 ```
@@ -28,6 +28,7 @@ For file system access mount accordingly.
 ex.
 
 ``` bash
+docker build -t mybuild .
 docker run --rm -v /Users/<User>/mydata:/mnt/mydata --name mycontainer -p 5000:5000 mybuild
 ```
 
@@ -63,7 +64,6 @@ conda env create
 #### Run (development)
 
 ``` bash
-REV_PATH
 conda activate Scout-REViewer-service
 ```
 
