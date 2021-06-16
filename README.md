@@ -8,14 +8,34 @@ A rest service for generating REViewer output.
 
 run with docker
 
+#### Setup
+
+``` bash
+git clone <project>
+cd <project>
+```
+
+#### run
+
 ``` bash
 docker build -t mybuild .
 # docker run --rm --name mycontainer -p 5000:5000 mybuild
 docker compose up
 ```
+
+For file system access mount accordingly.
+
+ex.
+
+``` bash
+docker run --rm -v /Users/<User>/mydata:/mnt/mydata --name mycontainer -p 5000:5000 mybuild
+```
+
+For accessing locally hosted files on server see the API instructions.
+
 ### To develop locally
 
-#### Prerequists
+#### Prerequisites
 
 Have access to files you want to run with/through REViewer.
 
@@ -55,7 +75,7 @@ uvicorn main:app --reload
 
 Example requests
 
-#### files accessible form another server
+#### files accessible from another server
 
 if running in docker use `host.docker.internal` instead of `localhost` to
 access your own server
