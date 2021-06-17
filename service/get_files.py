@@ -27,7 +27,7 @@ async def save(data, file_name_suffix, file_id, file_type):
 async def get_data(session, data, data_type, url, file_id, file_type):
     # if path (non url) we don't need to fetch and store the file and can just
     # use the file directly
-    if (urllib.parse.urlparse(url).scheme == ''):
+    if urllib.parse.urlparse(url).scheme == '':
         return {data_type: url}
 
     respone = await session.get(url)

@@ -26,7 +26,7 @@ def generate_svg(data, file_id, files):
       '--output-prefix', output_prefix
     ]
 
-    result = subprocess.run(cmd, stdout=subprocess.PIPE)
+    result = subprocess.run(cmd, stdout=subprocess.PIPE, check=True)
 
     print('REViewer:')
     print(result.stdout.decode('utf-8'))

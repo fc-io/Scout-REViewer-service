@@ -29,10 +29,6 @@ async def reviewer(request_data: Reviewer):
     file_id = str(uuid.uuid4())
     data = request_data.dict()
     files = await get_files(data, file_id)
-    print('files')
-    print(files)
     path_to_svg = generate_svg(data, file_id, files)
-    print('path_to_svg')
-    print(path_to_svg)
 
     return open(path_to_svg, "r").read()

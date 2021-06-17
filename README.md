@@ -33,7 +33,8 @@ REV_CATALOG_PATH=data/catalog_test.json
 2. update the file name in the `REV_REF_PATH` to match the reference file in
    your `host_data` folder
 
-REV_CATALOG_PATH can be changed to point to a file in the `host_data` folder but this is not required.
+REV_CATALOG_PATH can be changed to point to a file in the `host_data` folder but
+this is not required.
 
 #### run
 
@@ -90,7 +91,7 @@ Example requests
 Notice that the first time REViewer runs with a new reference file it will take
 a bit longer since it will generate a `fasta.fai` file. You can avoid this by
 adding a corresponding (same name) `fasta.fai` file to the same location as your
-fasta file (or provided with API request – TBD).
+fasta file (or provide one with the API request – TBD).
 
 #### files accessible from another server
 
@@ -138,7 +139,7 @@ pytest
 - [x] run REViewer with local file path as arguments
 - [x] send back REViewer generated SVG
 - [x] bundle REViewer
-- [X] Dockerize
+- [x] Dockerize
 - [ ] make smaller docker build
 - [ ] make port optional – docker/local
 - [ ] delete tmp files, maybe it's good if this also runs as some kind of chron job
