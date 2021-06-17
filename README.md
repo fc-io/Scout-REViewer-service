@@ -4,7 +4,7 @@ A rest service for generating REViewer output.
 
 ## Getting started
 
-### To test quickly
+### To test (a bit mor) quickly
 
 Run with docker
 
@@ -28,8 +28,8 @@ REV_CATALOG_PATH=data/catalog_test.json
 
 2 changes that needs to be made are:
 
-1. update the `HOST_DATA` value to point towards your reference file. This will
-   be used as default if the user does not provide one.
+1. update the `HOST_DATA` value to point towards your `.fasta` reference file.
+   This will   be used as default if the user does not provide one.
 2. update the file name in the `REV_REF_PATH` to match the reference file in
    your `host_data` folder
 
@@ -140,10 +140,11 @@ pytest
 - [x] bundle REViewer
 - [X] Dockerize
 - [ ] make smaller docker build
+- [ ] make port optional – docker/local
 - [ ] delete tmp files, maybe it's good if this also runs as some kind of chron job
 - [ ] think about if this is secure (enough)
 - [x] tests
-- [ ] maybe more tests
+- [ ] more tests – primarily for optional post values
 - [ ] make sure to check if all files are created correctly after fetching
 - [ ] validate urls – add helpful error messages if wrong file input
 - [ ] prettify && DRY up
