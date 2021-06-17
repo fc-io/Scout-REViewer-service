@@ -51,10 +51,19 @@ git clone <project>
 cd <project>
 ```
 
-set the path to your instance of REViewer
+Set the path to your instance of REViewer and a the reference and cataolog
+files that should be used as default. See https://github.com/Illumina/REViewer
+for info about what a reference file and a catalog file is.
+
+Notice that the first time REViewer runs with a new reference file it will take
+a bit longer since it will generate a `fasta.fai` file. You can avoid this by
+adding a corresponding (same name) `fasta.fai` file to the same location as your
+fasta file.
 
 ``` bash
 export REV_PATH="/Users/<User>/bin/REViewer/build/install/bin/REViewer"
+export REV_REF_PATH="/Users/<User>/Scout-REViewer-service/reference_file_name.fasta"
+export REV_CATALOG_PATH="/Users/<User>/Scout-REViewer-service/catalog.json"
 ```
 
 ``` bash
@@ -85,7 +94,7 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "reads": "http://localhost:5010/justhusky_exphun_hugelymodelbat_realigned.bam",
-  "index_file": "http://localhost:5010/justhusky_exphun_hugelymodelbat_realigned.bam.bai",
+  "reads_index": "http://localhost:5010/justhusky_exphun_hugelymodelbat_realigned.bam.bai",
   "vcf": "http://localhost:5010/justhusky_exphun_hugelymodelbat.vcf",
   "catalog": "http://localhost:5010/catalog_test.json",
   "locus": "TCF4"
@@ -99,11 +108,19 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "reads": "/path_to_file/justhusky_exphun_hugelymodelbat_realigned.bam",
-  "index_file": "/path_to_file/justhusky_exphun_hugelymodelbat_realigned.bam.bai",
+  "reads_index": "/path_to_file/justhusky_exphun_hugelymodelbat_realigned.bam.bai",
   "vcf": "/path_to_file/justhusky_exphun_hugelymodelbat.vcf",
   "catalog": "/path_to_file/catalog_test.json",
   "locus": "TCF4"
 }'
+```
+
+## Testing
+
+needs a `.fasta` reference file to run
+
+```
+pytest
 ```
 
 ## TODO
@@ -117,7 +134,8 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 - [ ] make smaller docker build
 - [ ] delete tmp files, maybe it's good if this also runs as some kind of chron job
 - [ ] think about if this is secure (enough)
-- [ ] tests
+- [x] tests
+- [ ] more tests
 - [ ] make sure to check if all files are created correctly after fetching
 - [ ] validate urls – add helpful error messages if wrong file input
 - [ ] prettify && DRY up

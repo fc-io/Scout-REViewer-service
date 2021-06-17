@@ -39,8 +39,9 @@ RUN conda env create -f environment.yml
 COPY . .
 
 ENV REV_PATH=/REViewer/build/install/bin/REViewer
+# ENV REV_REF_PATH="/Users/<User>/Scout-REViewer-service/reference_file_name.fasta"
+ENV REV_CATALOG_PATH="data/catalog_test.json"
 
 EXPOSE 5000
 
 ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "Scout-REViewer-service", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
-# ENTRYPOINT ["conda run --no-capture-output -n Scout-REViewer-service", "uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "5000"]

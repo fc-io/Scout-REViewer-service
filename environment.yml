@@ -8,5 +8,10 @@ dependencies:
     - typing
     - pydantic
     - aiohttp
-    - async_timeout
     - aiofiles
+    - pytest
+    - starlette
+    - requests
+    - httpx
+    - pytest-asyncio
+    - pylint
