@@ -10,8 +10,6 @@ dependencies:
     - aiohttp
     - aiofiles
     - pytest
-    - starlette
     - requests
-    - httpx
-    - pytest-asyncio
     - pylint
+    - python-dotenv

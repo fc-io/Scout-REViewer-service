@@ -1,10 +1,11 @@
 import os
 import subprocess
-import uuid
 
+from dotenv import dotenv_values
 from service.utils.get_root_path import get_root_path
 
 def generate_svg(data, file_id, files):
+    env = dotenv_values('.env')
     root_path = get_root_path()
     path = f'{root_path}/tmp_data'
     output_prefix = f'{path}/{file_id}'
@@ -16,12 +17,12 @@ def generate_svg(data, file_id, files):
     locus = data.get('locus', '')
 
     cmd = [
-      os.environ['REV_PATH'],
+      env.get('REV_PATH'),
       '--reads', files.get('reads', ''),
       '--vcf', files.get('vcf', ''),
-      '--catalog', files.get('catalog') or os.environ['REV_CATALOG_PATH'],
+      '--catalog', files.get('catalog') or env.get('REV_CATALOG_PATH'),
       '--locus', locus,
-      '--reference', data.get('reference') or os.environ['REV_REF_PATH'],
+      '--reference', data.get('reference') or env.get('REV_REF_PATH'),
       '--output-prefix', output_prefix
     ]
 

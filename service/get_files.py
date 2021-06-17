@@ -5,13 +5,12 @@ import urllib
 
 import aiofiles
 
+from dotenv import dotenv_values
 from aiohttp import ClientSession
 from service.utils.get_root_path import get_root_path
 
-
 async def save(data, file_name_suffix, file_id, file_type):
     path = f'{get_root_path()}/tmp_data'
-
     # The bam-index file need to have the same filename as the read-bam file
     # for REViewer to recognize it. So we have this check here and change the
     # suffix acordingly.
@@ -45,7 +44,7 @@ async def get_files(data, file_id):
                 session,
                 data,
                 'catalog',
-                data.get('catalog') or os.environ['REV_CATALOG_PATH'],
+                data.get('catalog') or dotenv_values('.env').get('REV_CATALOG_PATH'),
                 file_id, 'json')
             ),
 

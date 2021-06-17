@@ -32,5 +32,7 @@ async def reviewer(request_data: Reviewer):
     print('files')
     print(files)
     path_to_svg = generate_svg(data, file_id, files)
+    print('path_to_svg')
+    print(path_to_svg)
 
     return open(path_to_svg, "r").read()

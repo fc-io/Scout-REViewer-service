@@ -55,7 +55,7 @@ dev/
 .vagrant/
 htmlcov/
 provision/roles/
-.env
+.env*
 *.ipynb
 .vscode/
 
