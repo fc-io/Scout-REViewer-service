@@ -6,7 +6,7 @@ A rest service for generating REViewer output.
 
 ### To test quickly
 
-run with docker
+Run with docker
 
 #### Setup
 
@@ -14,35 +14,34 @@ run with docker
 git clone <project>
 cd <project>
 ```
+
+Create a docker specific env file called `.env.docker` in the root folder with
+the following content:
+
+```
+HOST_DATA=<absolute_path_to_host_machine_folder_with_reference_file>
+
+REV_PATH=/REViewer/build/install/bin/REViewer
+REV_REF_PATH=/host_data/<file_name_of_the_reference_file_in_the_host_data_folder>.fasta
+REV_CATALOG_PATH=data/catalog_test.json
+```
+
+2 changes that needs to be made are:
+
+1. update the `HOST_DATA` value to point towards your reference file. This will
+   be used as default if the user does not provide one.
+2. update the file name in the `REV_REF_PATH` to match the reference file in
+   your `host_data` folder
+
+REV_CATALOG_PATH can be changed to point to a file in the `host_data` folder but this is not required.
 
 #### run
 
 ``` bash
-# docker build -t mybuild .
-# docker run --rm --name mycontainer -p 5000:5000 mybuild
 docker compose up
 ```
 
-For file system access mount accordingly.
-
-ex.
-
-``` bash
-docker build -t mybuild .
-docker run --rm -v /Users/<User>/mydata:/mnt/mydata --name mycontainer -p 5000:5000 mybuild
-```
-
-For accessing locally hosted files on server see the API instructions.
-
 ### To develop locally
-
-#### Prerequisites
-
-Have access to files you want to run with/through REViewer.
-
-Make sure ~conda is installed.
-
-Add a reference (.fasta) file to data folder. (after cloning)
 
 #### Setup
 
@@ -51,20 +50,24 @@ git clone <project>
 cd <project>
 ```
 
-Set the path to your instance of REViewer and a the reference and cataolog
-files that should be used as default. See https://github.com/Illumina/REViewer
-for info about what a reference file and a catalog file is.
+Create a docker specific env file called `.env`. With the following
+content:
 
-Notice that the first time REViewer runs with a new reference file it will take
-a bit longer since it will generate a `fasta.fai` file. You can avoid this by
-adding a corresponding (same name) `fasta.fai` file to the same location as your
-fasta file.
-
-``` bash
-export REV_PATH="/Users/<User>/bin/REViewer/build/install/bin/REViewer"
-export REV_REF_PATH="/Users/<User>/Scout-REViewer-service/reference_file_name.fasta"
-export REV_CATALOG_PATH="/Users/<User>/Scout-REViewer-service/catalog.json"
 ```
+REV_PATH=/Users/fredrik/bin/REViewer/build/install/bin/REViewer
+REV_REF_PATH=../my_host_data/human_g1k_v37_decoy.fasta
+REV_CATALOG_PATH=data/catalog_test.json
+```
+
+2 changes that needs to be made are:
+
+1. Update the `REV_PATH` value to point towards your instance of REViewer. See
+   https://github.com/Illumina/REViewer for installation instructions.
+2. Update the file name in the `REV_REF_PATH` to point towars a reference
+   file.
+
+`REV_CATALOG_PATH` can be changed to point to another catalog file but this is
+not required.
 
 ``` bash
 conda env create
@@ -84,10 +87,15 @@ uvicorn main:app --reload
 
 Example requests
 
+Notice that the first time REViewer runs with a new reference file it will take
+a bit longer since it will generate a `fasta.fai` file. You can avoid this by
+adding a corresponding (same name) `fasta.fai` file to the same location as your
+fasta file (or provided with API request – TBD).
+
 #### files accessible from another server
 
-if running in docker use `host.docker.internal` instead of `localhost` to
-access your own server
+If running in docker use `host.docker.internal` instead of `localhost` to
+access your own server.
 
 ``` bash
 curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
@@ -117,7 +125,7 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 
 ## Testing
 
-needs a `.fasta` reference file to run
+Needs a `.fasta` reference file to run. See instructions for `.env` files above.
 
 ```
 pytest
@@ -135,12 +143,12 @@ pytest
 - [ ] delete tmp files, maybe it's good if this also runs as some kind of chron job
 - [ ] think about if this is secure (enough)
 - [x] tests
-- [ ] more tests
+- [ ] maybe more tests
 - [ ] make sure to check if all files are created correctly after fetching
 - [ ] validate urls – add helpful error messages if wrong file input
 - [ ] prettify && DRY up
 - [ ] handle files that are too large
-
+- [ ] API documentation
 
 ### Ideas
 
