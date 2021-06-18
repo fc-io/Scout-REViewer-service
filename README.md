@@ -21,6 +21,8 @@ the following content:
 ```
 HOST_DATA=<absolute_path_to_host_machine_folder_with_reference_file>
 
+SRS_PORT=5050
+
 REV_PATH=/REViewer/build/install/bin/REViewer
 REV_REF_PATH=/host_data/<file_name_of_the_reference_file_in_the_host_data_folder>.fasta
 REV_CATALOG_PATH=data/catalog_test.json
@@ -32,6 +34,8 @@ REV_CATALOG_PATH=data/catalog_test.json
    This will   be used as default if the user does not provide one.
 2. update the file name in the `REV_REF_PATH` to match the reference file in
    your `host_data` folder
+
+SRS_PORT can be changed to set the port the service exposes.
 
 REV_CATALOG_PATH can be changed to point to a file in the `host_data` folder but
 this is not required.
@@ -154,10 +158,10 @@ pytest
 - [ ] prettify && DRY up
 - [ ] handle files that are too large
 - [ ] API documentation
+- [x] make it possible to select port through env varaiables – docker
 
 ### Ideas
 
 - [ ] file uploader
 - [ ] rate limiting
-- [ ] make it possible to select port through env varaiables – docker/local
 - [ ] could pipe svg instead of creating a file?

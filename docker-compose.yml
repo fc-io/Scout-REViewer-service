@@ -3,7 +3,8 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "${SRS_PORT}:${SRS_PORT}"
     volumes:
       - "${HOST_DATA}:/host_data"
-
+    env_file:
+      - .env.docker
