@@ -39,8 +39,11 @@ this is not required.
 #### run
 
 ``` bash
-docker compose up
+env $(cat .env.docker) docker compose up
 ```
+
+The crazy `env $(cat .env.docker)` is because docker compose up does not support
+an `--env-file` option like `docker run`
 
 ### To develop locally
 
@@ -51,7 +54,7 @@ git clone <project>
 cd <project>
 ```
 
-Create a docker specific env file called `.env`. With the following
+Create an env file called `.env`. With the following
 content:
 
 ```
@@ -91,7 +94,8 @@ Example requests
 Notice that the first time REViewer runs with a new reference file it will take
 a bit longer since it will generate a `fasta.fai` file. You can avoid this by
 adding a corresponding (same name) `fasta.fai` file to the same location as your
-fasta file (or provide one with the API request – TBD).
+fasta file (or provide one with the API request – TBD) – if you
+already have one.
 
 #### files accessible from another server
 
@@ -141,7 +145,6 @@ pytest
 - [x] bundle REViewer
 - [x] Dockerize
 - [ ] make smaller docker build
-- [ ] make port optional – docker/local
 - [ ] delete tmp files, maybe it's good if this also runs as some kind of chron job
 - [ ] think about if this is secure (enough)
 - [x] tests
@@ -156,3 +159,5 @@ pytest
 
 - [ ] file uploader
 - [ ] rate limiting
+- [ ] make it possible to select port through env varaiables – docker/local
+- [ ] could pipe svg instead of creating a file?

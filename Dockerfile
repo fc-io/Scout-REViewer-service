@@ -37,6 +37,7 @@ COPY environment.yml .
 RUN conda env create -f environment.yml
 
 COPY . .
+COPY .env.docker .env
 
 EXPOSE 5000
 

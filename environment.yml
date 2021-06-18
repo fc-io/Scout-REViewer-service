@@ -3,13 +3,13 @@ dependencies:
 - python=3.9.5
 - pip
 - pip:
-    - fastapi
-    - uvicorn[standard]
-    - typing
-    - pydantic
-    - aiohttp
     - aiofiles
-    - pytest
-    - requests
+    - aiohttp
+    - fastapi
+    - pydantic
     - pylint
+    - pytest
     - python-dotenv
+    - requests
+    - typing
+    - uvicorn[standard]
