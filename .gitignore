@@ -77,9 +77,6 @@ _book/
 # Textmate
 .tm_properties
 
-# Linters
-pylintrc
-
 # Other
 /local
 scripts/local
