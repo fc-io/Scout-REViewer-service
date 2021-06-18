@@ -13,7 +13,6 @@ def generate_svg(data, file_id, files):
     # should really be no need to check output path here since we've already
     # created the folder when we stored the input files
     os.makedirs(path, exist_ok=True)
-
     locus = data.get('locus', '')
 
     cmd = [

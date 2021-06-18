@@ -14,8 +14,9 @@ def test_root():
 def test_reviewer():
     """
       Test REViewer svg generation.
-      This test uses file path and assumes that a reference file has been
-      included in the project.
+
+      This test assumes a reference file in the .env file that you've added to
+      the project.
     """
     json = {
       # pylint: disable=line-too-long
