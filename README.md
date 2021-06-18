@@ -4,7 +4,7 @@ A rest service for generating REViewer output.
 
 ## Getting started
 
-### To test (a bit mor) quickly
+### To test (a bit more) quickly
 
 Run with docker
 
@@ -71,7 +71,7 @@ REV_CATALOG_PATH=data/catalog_test.json
 
 1. Update the `REV_PATH` value to point towards your instance of REViewer. See
    https://github.com/Illumina/REViewer for installation instructions.
-2. Update the file name in the `REV_REF_PATH` to point towars a reference
+2. Update the file name in the `REV_REF_PATH` to point towards a reference
    file.
 
 `REV_CATALOG_PATH` can be changed to point to another catalog file but this is
@@ -158,7 +158,7 @@ pytest
 - [ ] prettify && DRY up
 - [ ] handle files that are too large
 - [ ] API documentation
-- [x] make it possible to select port through env varaiables – docker
+- [x] make it possible to select port through env variables – docker
 
 ### Ideas
 
