@@ -2,12 +2,11 @@ import os
 import subprocess
 
 from dotenv import dotenv_values
-from service.utils.get_root_path import get_root_path
+from service.utils.get_tmp_data_path import get_tmp_data_path
 
 def generate_svg(data, file_id, files):
     env = dotenv_values('.env')
-    root_path = get_root_path()
-    path = f'{root_path}/tmp_data'
+    path = get_tmp_data_path()
     output_prefix = f'{path}/{file_id}'
 
     # should really be no need to check output path here since we've already

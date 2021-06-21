@@ -8,6 +8,7 @@ from pydantic import BaseModel
 
 from service.get_files import get_files
 from service.generate_svg import generate_svg
+from service.remove_files import remove_files
 
 app = FastAPI()
 
@@ -30,5 +31,10 @@ async def reviewer(request_data: Reviewer):
     data = request_data.dict()
     files = await get_files(data, file_id)
     path_to_svg = generate_svg(data, file_id, files)
+    svg = open(path_to_svg, "r").read()
 
-    return open(path_to_svg, "r").read()
+    files['svg'] = path_to_svg
+
+    await remove_files(files)
+
+    return svg
