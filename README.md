@@ -150,15 +150,17 @@ pytest
 - [x] Dockerize
 - [ ] make smaller docker build
 - [ ] delete tmp files, maybe it's good if this also runs as some kind of chron job
-- [ ] think about if this is secure (enough)
 - [x] tests
-- [ ] more tests – primarily for optional post values
+- [ ] more tests – primarily for optional post values, and check that it fails well with wrong input
 - [ ] make sure to check if all files are created correctly after fetching
-- [ ] validate urls – add helpful error messages if wrong file input
+- [ ] validate urls – add helpful error messages if wrong file input (check that a file is download)
 - [ ] prettify && DRY up
-- [ ] handle files that are too large
+
 - [ ] API documentation
-- [x] make it possible to select port through env variables – docker
+- [x] make it possible to select port through .env variables – docker
+
+- [ ] handle files that are too large – test? low priority
+- [ ] think about if this is secure (enough) – low priority
 
 ### Ideas
 
