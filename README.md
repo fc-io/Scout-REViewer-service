@@ -46,8 +46,8 @@ this is not required.
 env $(cat .env.docker) docker compose up
 ```
 
-The crazy `env $(cat .env.docker)` is because docker compose up does not support
-an `--env-file` option like `docker run`
+The crazy `env $(cat .env.docker)` is because `docker compose up` does not support
+an `--env-file` option like `docker run` does.
 
 ### To develop locally
 
@@ -77,6 +77,8 @@ REV_CATALOG_PATH=data/catalog_test.json
 `REV_CATALOG_PATH` can be changed to point to another catalog file but this is
 not required.
 
+Then load dependencies and the virtual environment using anaconda/mini-conda:
+
 ``` bash
 conda env create
 ```
@@ -93,7 +95,7 @@ uvicorn main:app --reload
 
 ### API
 
-Example requests
+#### Example requests
 
 Notice that the first time REViewer runs with a new reference file it will take
 a bit longer since it will generate a `fasta.fai` file. You can avoid this by
@@ -101,7 +103,7 @@ adding a corresponding (same name) `fasta.fai` file to the same location as your
 fasta file (or provide one with the API request – TBD) – if you
 already have one.
 
-#### files accessible from another server
+##### files accessible from another server
 
 If running in docker use `host.docker.internal` instead of `localhost` to
 access your own server.
@@ -118,7 +120,7 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 }'
 ```
 
-#### files from locally accessible file system
+##### files from locally accessible file system
 
 ``` bash
 curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
@@ -132,6 +134,11 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 }'
 ```
 
+#### Docs
+
+Automatically generated API docs can be accessed at
+`http://<server-address>:<port>/docs` when running the server.
+
 ## Testing
 
 Needs a `.fasta` reference file to run. See instructions for `.env` files above.
@@ -139,11 +146,6 @@ Needs a `.fasta` reference file to run. See instructions for `.env` files above.
 ```
 pytest
 ```
-
-## Docs
-
-Automatically generated API docs can be accessed at
-`http://<server-address>:<port>/docs` when running the server.
 
 ## TODO
 
@@ -158,6 +160,7 @@ Automatically generated API docs can be accessed at
 - [x] tests
 - [x] more tests – primarily for optional post values
 - [ ] more tests 2 – check that it fails well with wrong input
+- [ ] unit tests - low prio
 - [ ] make sure to check if all files are created correctly after fetching
 - [ ] validate urls – add helpful error messages if wrong file input (check that a file is download)
 - [ ] prettify && DRY up
