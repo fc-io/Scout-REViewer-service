@@ -6,8 +6,9 @@ from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 
-from service.get_files import get_files
 from service.generate_svg import generate_svg
+from service.get_files import get_files
+from service.get_svg_as_string import get_svg_as_string
 from service.modify_svg import modify_svg
 from service.remove_files import remove_files
 
@@ -44,9 +45,7 @@ async def reviewer(request_data: Reviewer):
     files = await get_files(data, file_id)
     path_to_svg = generate_svg(data, file_id, files)
     modify_svg(path_to_svg)
-
-    with open(path_to_svg, 'r') as svg_file:
-        svg = svg_file.read()
+    svg = get_svg_as_string(path_to_svg)
 
     # really no need to await here, but seems more consistent, and should better
     # catch errors
