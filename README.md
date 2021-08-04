@@ -4,7 +4,7 @@ A rest service for generating REViewer output.
 
 ## Getting started
 
-### To test (a bit more) quickly
+### To make it run (a bit more) quickly
 
 Run with docker
 
@@ -31,14 +31,14 @@ REV_CATALOG_PATH=data/catalog_test.json
 2 changes that needs to be made are:
 
 1. update the `HOST_DATA` value to point towards your `.fasta` reference file.
-   This will   be used as default if the user does not provide one.
+   This will be used as default if the user does not provide one.
 2. update the file name in the `REV_REF_PATH` to match the reference file in
    your `host_data` folder
 
 SRS_PORT can be changed to set the port the service exposes.
 
-REV_CATALOG_PATH can be changed to point to a file in the `host_data` folder but
-this is not required.
+REV_CATALOG_PATH can be changed to point to a custom file in the `host_data`
+folder but this is not required as one is provided by default.
 
 #### run
 
@@ -62,7 +62,7 @@ Create an env file called `.env`. With the following
 content:
 
 ```
-REV_PATH=/Users/fredrik/bin/REViewer/build/install/bin/REViewer
+REV_PATH=/Users/<User>/bin/REViewer/build/install/bin/REViewer
 REV_REF_PATH=../my_host_data/human_g1k_v37_decoy.fasta
 REV_CATALOG_PATH=data/catalog_test.json
 ```
@@ -75,9 +75,9 @@ REV_CATALOG_PATH=data/catalog_test.json
    file.
 
 `REV_CATALOG_PATH` can be changed to point to another catalog file but this is
-not required.
+not required as one is provided as default.
 
-Then load dependencies and the virtual environment using anaconda/mini-conda:
+Then load dependencies and the virtual environment using anaconda or mini-conda:
 
 ``` bash
 conda env create
@@ -99,9 +99,9 @@ uvicorn main:app --reload
 
 Notice that the first time REViewer runs with a new reference file it will take
 a bit longer since it will generate a `fasta.fai` file. You can avoid this by
-adding a corresponding (same name) `fasta.fai` file to the same location as your
-fasta file (or provide one with the API request – TBD) – if you
-already have one.
+adding a corresponding (same name, different file extension) `fasta.fai` file
+to the same location as your fasta file (or provide one with the API request –
+TBD) – if you already have one.
 
 ##### files accessible from another server
 
@@ -122,6 +122,9 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 
 ##### files from locally accessible file system
 
+This will avoid copying the files and instead use the already existing files.
+This i preferred if possible as it should be faster and reduce writes.
+
 ``` bash
 curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 --header 'Content-Type: application/json' \
@@ -137,7 +140,8 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 #### Docs
 
 Automatically generated API docs can be accessed at
-`http://<server-address>:<port>/docs` when running the server.
+`http://<server-address>:<port>/docs` when running the server. But the content
+of this README.md is more extensive.
 
 ## Testing
 
