@@ -10,7 +10,9 @@ def exist_in_folder(file, folder_path):
 
     return any((file == join(folder_path, i) for i in files_in_folder_path))
 
-async def remove_files (files):
+async def remove_files (files, path_to_svg):
+    files['svg'] = path_to_svg
+
     for file in files.values():
         if isfile(file) and exist_in_folder(file, get_tmp_data_path()):
             await aiofiles.os.remove(file)

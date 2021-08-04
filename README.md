@@ -123,16 +123,16 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 ##### files from locally accessible file system
 
 This will avoid copying the files and instead use the already existing files.
-This i preferred if possible as it should be faster and reduce writes.
+This is preferred if possible as it should be faster and reduce writes.
 
 ``` bash
 curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "reads": "/path_to_file/justhusky_exphun_hugelymodelbat_realigned.bam",
-  "reads_index": "/path_to_file/justhusky_exphun_hugelymodelbat_realigned.bam.bai",
-  "vcf": "/path_to_file/justhusky_exphun_hugelymodelbat.vcf",
-  "catalog": "/path_to_file/catalog_test.json",
+  "reads": "/<path_to_file>/justhusky_exphun_hugelymodelbat_realigned.bam",
+  "reads_index": "/<path_to_file>/justhusky_exphun_hugelymodelbat_realigned.bam.bai",
+  "vcf": "/<path_to_file>/justhusky_exphun_hugelymodelbat.vcf",
+  "catalog": "/<path_to_file>/catalog_test.json",
   "locus": "TCF4"
 }'
 ```
@@ -141,7 +141,7 @@ curl --location --request POST 'http://127.0.0.1:8000/reviewer' \
 
 Automatically generated API docs can be accessed at
 `http://<server-address>:<port>/docs` when running the server. But the content
-of this README.md is more extensive.
+of this `README.md` is more extensive.
 
 ## Testing
 
@@ -175,8 +175,11 @@ pytest
 - [ ] handle files that are too large – test? low priority
 - [ ] security – should be enough for now since this will be an internal service
 
+- [x] add viewBox attribute to allow for responsive scaling when added to HTML
+
 ### Ideas
 
 - [ ] file uploader
 - [ ] rate limiting
 - [ ] could pipe svg instead of creating a file? (Don't think this can be easily done.)
+

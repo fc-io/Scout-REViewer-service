@@ -5,6 +5,7 @@ dependencies:
 - pip:
     - aiofiles
     - aiohttp
+    - elementpath
     - fastapi
     - pydantic
     - pylint
