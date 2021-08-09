@@ -14,7 +14,7 @@ def add_viewbox_to_svg(root):
     root.set('viewBox', f'0 0 {width} {height}')
 
 def modify_svg(path_to_svg):
-    ET.register_namespace('', "http://www.w3.org/2000/svg")
+    ET.register_namespace('', 'http://www.w3.org/2000/svg')
     tree = ET.parse(path_to_svg)
     root = tree.getroot()
     add_viewbox_to_svg(root)

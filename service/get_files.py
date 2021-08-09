@@ -18,7 +18,7 @@ async def save(data, file_name_suffix, file_id, file_type):
     file_name = f'{path}/{file_id}_{suffix}.{file_type}'
     os.makedirs(path, exist_ok=True)
 
-    async with aiofiles.open(file_name, "wb") as out:
+    async with aiofiles.open(file_name, 'wb') as out:
         await out.write(data)
         await out.flush()
 
