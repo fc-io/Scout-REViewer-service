@@ -2,6 +2,8 @@
 
 A rest service for generating REViewer output.
 
+Send in json with bam and vcf file references. Get a SVG with graph alignments.
+
 ## Getting started
 
 ### To make it run (a bit more) quickly
