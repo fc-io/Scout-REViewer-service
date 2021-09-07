@@ -20,15 +20,15 @@ jobs:
        with:
         python-version: ${{ matrix.python-version}}
 
-      - name: Black
-        uses: psf/black@stable
-        with:
-          black_args: ". --check --line-length 100"
+     - name: Black
+       uses: psf/black@stable
+       with:
+        black_args: ". --check --line-length 100"
 
-      - name: Run isort
-        uses: jamescurtin/isort-action@master
-      	with:
-          configuration: "--check-only --diff -m 3 --tc --fgw 0 --up -n -l 100"
+     - name: Run isort
+       uses: jamescurtin/isort-action@master
+       with:
+        configuration: "--check-only --diff -m 3 --tc --fgw 0 --up -n -l 100"
 
   docker-image-push:
     runs-on: ubuntu-latest
