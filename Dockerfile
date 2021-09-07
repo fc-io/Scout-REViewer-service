@@ -33,7 +33,7 @@ RUN set -ex;                                                                   \
     make;
 
 COPY . /Scout-REViewer-service
-COPY .env.docker .env
+COPY cg.env.docker .env
 
 RUN conda env create -f /Scout-REViewer-service/environment.yml
 
