@@ -1,0 +1,63 @@
+---
+
+name: Pull Request Actions
+
+on: [push]
+
+jobs:
+  lint-only:
+    name: Lint only
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+    steps:
+     - name: Check out git repository
+       uses: actions/checkout@v2
+
+     - name: Set up Python ${{ matrix.python-version}}
+       uses: actions/setup-python@v2
+       with:
+        python-version: ${{ matrix.python-version}}
+
+     - name: Black
+       uses: psf/black@stable
+       with:
+        black_args: ". --check --line-length 100"
+
+     - name: Run isort
+       uses: jamescurtin/isort-action@master
+       with:
+        configuration: "--check-only --diff -m 3 --tc --fgw 0 --up -n -l 100"
+
+  docker-image-push:
+    runs-on: ubuntu-latest
+    name: Create staging docker image
+    steps:
+     - name: Check out git repository
+       uses: actions/checkout@v2
+
+     - name: Extract branch name and remove illegal chars
+       id: get_branch_name
+       shell: bash
+       run: echo "##[set-output name=branch;]$(echo "$(tr "/" "-" <<<${GITHUB_REF#refs/heads/})")"
+
+     - name: Login to Docker Hub
+       uses: docker/login-action@v1
+       with:
+         username: ${{ secrets.DOCKER_USERNAME }}
+         password: ${{ secrets.DOCKER_PASSWORD }}
+
+     - name: Set up Docker Buildx
+       id: buildx
+       uses: docker/setup-buildx-action@v1
+
+     - name: Build and push
+       id: docker_build
+       uses: docker/build-push-action@v2
+       with:
+         context: ./
+         file: ./Dockerfile
+         push: true
+         tags: "clinicalgenomics/scout-reviewer-service-stage:${{steps.get_branch_name.outputs.branch}}, clinicalgenomics/scout-reviewer-service-stage:latest"
+
